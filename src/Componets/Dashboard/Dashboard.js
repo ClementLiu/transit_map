@@ -10,6 +10,7 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 import { GoogleMapComponent } from "Componets/GoogleMap";
+import TableReact, { Tabulator } from "Componets/tables";
 
 function Dashboard() {
   return (
@@ -40,6 +41,27 @@ function Dashboard() {
         <Row>
           <Col xs={12}>
             <Card style={{ width: "100%" }}>
+              <GoogleMapComponent></GoogleMapComponent>
+            </Card>
+          </Col>
+        </Row>
+        <Row className="mt-3">
+          <Col xs={12}>
+            <Card style={{ width: "100%" }}>
+              <TableReact></TableReact>
+            </Card>
+          </Col>
+        </Row>
+        <Row className="mt-3">
+          <Col xs={12}>
+            <Card style={{ width: "100%" }}>
+              <Tabulator></Tabulator>
+            </Card>
+          </Col>
+        </Row>
+        <Row className="mt-3">
+          <Col xs={12}>
+            <Card style={{ width: "100%" }}>
               <Card.Img variant="top" src="holder.js/100px180" />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
@@ -49,13 +71,6 @@ function Dashboard() {
                 </Card.Text>
                 <Button variant="primary">Go somewhere</Button>
               </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <Card style={{ width: "100%" }}>
-              <GoogleMapComponent></GoogleMapComponent>
             </Card>
           </Col>
         </Row>

@@ -7,6 +7,7 @@ import {
   DirectionsService,
   DirectionsRenderer,
 } from "@react-google-maps/api";
+import { Button } from "react-bootstrap";
 import { isElement } from "react-dom/test-utils";
 
 function GoogleMapComponent() {
@@ -158,7 +159,7 @@ function GoogleMapComponent() {
           })}
         </>
       </GoogleMap>
-      <button
+      <Button
         onClick={() => {
           setmapState({
             ...mapState,
@@ -183,7 +184,7 @@ function GoogleMapComponent() {
         }}
       >
         Test
-      </button>
+      </Button>
     </LoadScript>
   );
 }
