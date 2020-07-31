@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Nav,
   Card,
@@ -9,10 +9,13 @@ import {
   Navbar,
   NavDropdown,
 } from "react-bootstrap";
-import { GoogleMapComponent } from "Componets/GoogleMap";
-import TableReact, { Tabulator } from "Componets/tables";
+
+import { Tabulator } from "Componets/tables";
+import Map from "./Map";
 
 function Dashboard() {
+  const [bustState, setbusState] = useState(-1);
+
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -41,14 +44,22 @@ function Dashboard() {
         <Row>
           <Col xs={12}>
             <Card style={{ width: "100%" }}>
-              <GoogleMapComponent></GoogleMapComponent>
+              <Map vehicleRef={bustState}></Map>
             </Card>
           </Col>
         </Row>
+
         <Row className="mt-3">
           <Col xs={12}>
             <Card style={{ width: "100%" }}>
-              <TableReact></TableReact>
+              <Button
+                onClick={() => {
+                  console.log("clicked In dash");
+                  setbusState(19);
+                }}
+              >
+                Test
+              </Button>
             </Card>
           </Col>
         </Row>
@@ -59,7 +70,7 @@ function Dashboard() {
             </Card>
           </Col>
         </Row>
-        <Row className="mt-3">
+        {/* <Row className="mt-3">
           <Col xs={12}>
             <Card style={{ width: "100%" }}>
               <Card.Img variant="top" src="holder.js/100px180" />
@@ -73,7 +84,7 @@ function Dashboard() {
               </Card.Body>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </div>
   );

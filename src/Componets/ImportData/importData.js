@@ -1,7 +1,8 @@
-import React from "react";
 import line_pattern from "data/line_pattern";
 import bus_stops from "data/bus_stops";
 import real_time from "data/real-time";
+import bus_lines from "data/bus_lines";
+import bus_location from "data/bus_location";
 function getLocationByLine() {
   const locationsArray = [];
   const stopPointsPatterns =
@@ -52,10 +53,18 @@ function getRealTimeBusLocationByLine() {
   console.log("busLocations", busLocations);
   return busLocations;
 }
-function importData() {
-  getLocationByLine();
-  return <div>In data</div>;
+function getBusLinesByAgency(agencyName) {
+  // agencyName
+  return bus_lines;
+}
+function getBusLocationByAgency(agencyName) {
+  // agencyName
+  return bus_location;
 }
 
-export default importData;
-export { getLocationByLine, getRealTimeBusLocationByLine };
+export {
+  getLocationByLine,
+  getRealTimeBusLocationByLine,
+  getBusLinesByAgency,
+  getBusLocationByAgency,
+};

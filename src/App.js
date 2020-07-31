@@ -1,18 +1,19 @@
 import React from "react";
-import {
-  GoogleMapComponent,
-  getRealTimeBusLocationByLine,
-} from "./Componets/GoogleMap";
+import { GoogleMapComponent } from "./Componets/GoogleMap";
 import Dashboard from "./Componets/Dashboard";
+import { getRealTimeBusLocationByLine } from "./Componets/ImportData";
+import { QueriesProvider } from "contexts/map.context";
 
 function App() {
   getRealTimeBusLocationByLine();
   return (
-    <div>
-      {/* working */}
-      {/* <GoogleMapComponent></GoogleMapComponent> */}
-      <Dashboard></Dashboard>
-    </div>
+    <>
+      <QueriesProvider>
+        {/* working */}
+        {/* <GoogleMapComponent></GoogleMapComponent> */}
+        <Dashboard></Dashboard>
+      </QueriesProvider>
+    </>
   );
 }
 
