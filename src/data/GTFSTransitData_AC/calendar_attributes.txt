@@ -1,0 +1,7 @@
+service_id,service_description
+"72905","Saturday"
+"72906","Sunday"
+"72907","Weekday"
+"72908","Friday late night/evening"
+"72909","Saturday late night/evening"
+"72910","Weekday, before midnight"

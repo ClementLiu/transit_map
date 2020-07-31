@@ -1,0 +1,406 @@
+﻿{
+  "ServiceDelivery": {
+    "ResponseTimestamp": "2020-07-29T19:13:40Z",
+    "ProducerRef": "AC",
+    "Status": true,
+    "StopMonitoringDelivery": {
+      "version": "1.4",
+      "ResponseTimestamp": "2020-07-29T19:13:40Z",
+      "Status": true,
+      "MonitoredStopVisit": [
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "53365",
+          "MonitoredVehicleJourney": {
+            "LineRef": "20",
+            "DirectionRef": "E",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "838020"
+            },
+            "PublishedLineName": "Dimond - Fruitvale - South Shore",
+            "OperatorRef": "AC",
+            "OriginRef": "58900",
+            "OriginName": "Mlk Jr Way + 11th St",
+            "DestinationRef": "55595",
+            "DestinationName": "Dimond District",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.276871",
+              "Latitude": "37.7714539"
+            },
+            "Bearing": "136.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "1560",
+            "MonitoredCall": {
+              "StopPointRef": "53365",
+              "StopPointName": "Central Av + Webster St",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "true",
+              "AimedArrivalTime": "2020-07-29T19:12:21Z",
+              "ExpectedArrivalTime": "2020-07-29T19:13:41Z",
+              "AimedDepartureTime": "2020-07-29T19:12:21Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "50509",
+          "MonitoredVehicleJourney": {
+            "LineRef": "210",
+            "DirectionRef": "N",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "6336020"
+            },
+            "PublishedLineName": "Fremont Blvd. - Mission San Jose",
+            "OperatorRef": "AC",
+            "OriginRef": "55526",
+            "OriginName": "Ohlone College-Key C",
+            "DestinationRef": "50853",
+            "DestinationName": "Union Landing Transit Center",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.069931",
+              "Latitude": "37.5947266"
+            },
+            "Bearing": "333.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "1626",
+            "MonitoredCall": {
+              "StopPointRef": "50509",
+              "StopPointName": "Dyer St + Alvarado-Niles Rd",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "true",
+              "AimedArrivalTime": "2020-07-29T19:14:42Z",
+              "ExpectedArrivalTime": "2020-07-29T19:13:41Z",
+              "AimedDepartureTime": "2020-07-29T19:14:42Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "52600",
+          "MonitoredVehicleJourney": {
+            "LineRef": "212",
+            "DirectionRef": "S",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "6400020"
+            },
+            "PublishedLineName": "Fremont Blvd. - Pacific Commons",
+            "OperatorRef": "AC",
+            "OriginRef": "50939",
+            "OriginName": "Fremont BART Station",
+            "DestinationRef": "56855",
+            "DestinationName": "Pacific Commons",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-121.982544",
+              "Latitude": "37.5459175"
+            },
+            "Bearing": "209.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "5124",
+            "MonitoredCall": {
+              "StopPointRef": "52600",
+              "StopPointName": "Fremont Blvd + Sundale Dr",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "true",
+              "AimedArrivalTime": "2020-07-29T19:14:00Z",
+              "ExpectedArrivalTime": "2020-07-29T19:13:41Z",
+              "AimedDepartureTime": "2020-07-29T19:14:00Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "51636",
+          "MonitoredVehicleJourney": {
+            "LineRef": "6",
+            "DirectionRef": "S",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "4969020"
+            },
+            "PublishedLineName": "Berkeley - Telegraph - Oakland",
+            "OperatorRef": "AC",
+            "OriginRef": "52842",
+            "OriginName": "Addison St + Oxford St",
+            "DestinationRef": "51636",
+            "DestinationName": "Downtown Oakland",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.273994",
+              "Latitude": "37.8019676"
+            },
+            "Bearing": "307.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "10",
+            "MonitoredCall": {
+              "StopPointRef": "51636",
+              "StopPointName": "10th St + Washington St",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "true",
+              "AimedArrivalTime": "2020-07-29T19:11:00Z",
+              "ExpectedArrivalTime": "2020-07-29T19:13:41Z",
+              "AimedDepartureTime": "2020-07-29T19:11:00Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "55707",
+          "MonitoredVehicleJourney": {
+            "LineRef": "72M",
+            "DirectionRef": "S",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "9464020"
+            },
+            "PublishedLineName": "Macdonald - San Pablo",
+            "OperatorRef": "AC",
+            "OriginRef": "58600",
+            "OriginName": "Tewksbury Av + Castro St",
+            "DestinationRef": "51632",
+            "DestinationName": "Jack London Square",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.276314",
+              "Latitude": "37.8195953"
+            },
+            "Bearing": "166.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "1502",
+            "MonitoredCall": {
+              "StopPointRef": "55707",
+              "StopPointName": "San Pablo Av + Milton St",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "true",
+              "AimedArrivalTime": "2020-07-29T19:11:45Z",
+              "ExpectedArrivalTime": "2020-07-29T19:13:41Z",
+              "AimedDepartureTime": "2020-07-29T19:11:45Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "54963",
+          "MonitoredVehicleJourney": {
+            "LineRef": "F",
+            "DirectionRef": "W",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "1475020"
+            },
+            "PublishedLineName": "Adeline - Market Transbay",
+            "OperatorRef": "AC",
+            "OriginRef": "52848",
+            "OriginName": "Hearst Av + Walnut St",
+            "DestinationRef": "50032",
+            "DestinationName": "San Francisco",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.259468",
+              "Latitude": "37.868679"
+            },
+            "Bearing": "256.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "2252",
+            "MonitoredCall": {
+              "StopPointRef": "54963",
+              "StopPointName": "Bancroft Way + Telegraph Av",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "true",
+              "AimedArrivalTime": "2020-07-29T19:12:37Z",
+              "ExpectedArrivalTime": "2020-07-29T19:13:41Z",
+              "AimedDepartureTime": "2020-07-29T19:12:37Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "53135",
+          "MonitoredVehicleJourney": {
+            "LineRef": "57",
+            "DirectionRef": "E",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "4057020"
+            },
+            "PublishedLineName": "40th St. - MacArthur",
+            "OperatorRef": "AC",
+            "OriginRef": "51163",
+            "OriginName": "Christie Av + 65th St",
+            "DestinationRef": "51413",
+            "DestinationName": "Foothill Square",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.184464",
+              "Latitude": "37.7762871"
+            },
+            "Bearing": "68.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "1555",
+            "MonitoredCall": {
+              "StopPointRef": "53135",
+              "StopPointName": "MacArthur Blvd + 61st Av",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "true",
+              "AimedArrivalTime": "2020-07-29T19:09:47Z",
+              "ExpectedArrivalTime": "2020-07-29T19:13:42Z",
+              "AimedDepartureTime": "2020-07-29T19:09:47Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "58330",
+          "MonitoredVehicleJourney": {
+            "LineRef": "6",
+            "DirectionRef": "S",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "5976020"
+            },
+            "PublishedLineName": "Berkeley - Telegraph - Oakland",
+            "OperatorRef": "AC",
+            "OriginRef": "52842",
+            "OriginName": "Addison St + Oxford St",
+            "DestinationRef": "51636",
+            "DestinationName": "Downtown Oakland",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.259323",
+              "Latitude": "37.8596611"
+            },
+            "Bearing": "183.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "7022",
+            "MonitoredCall": {
+              "StopPointRef": "58330",
+              "StopPointName": "Telegraph Av + Russell St",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "true",
+              "AimedArrivalTime": "2020-07-29T19:14:15Z",
+              "ExpectedArrivalTime": "2020-07-29T19:13:42Z",
+              "AimedDepartureTime": "2020-07-29T19:14:15Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "59970",
+          "MonitoredVehicleJourney": {
+            "LineRef": "7",
+            "DirectionRef": "S",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "5540020"
+            },
+            "PublishedLineName": "Arlington - 1000 Oaks - Shattuck",
+            "OperatorRef": "AC",
+            "OriginRef": "52306",
+            "OriginName": "Cutting Blvd + Ohlone Greenway (Del Norte BART)",
+            "DestinationRef": "51096",
+            "DestinationName": "Downtown Berkeley",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.279472",
+              "Latitude": "37.9068642"
+            },
+            "Bearing": "175.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "5111",
+            "MonitoredCall": {
+              "StopPointRef": "59970",
+              "StopPointName": "Arlington Av + San Luis Rd",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "false",
+              "AimedArrivalTime": "2020-07-29T19:15:00Z",
+              "ExpectedArrivalTime": "2020-07-29T19:15:01Z",
+              "AimedDepartureTime": "2020-07-29T19:15:00Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        },
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": "50501",
+          "MonitoredVehicleJourney": {
+            "LineRef": "99",
+            "DirectionRef": "N",
+            "FramedVehicleJourneyRef": {
+              "DataFrameRef": "2020-07-29",
+              "DatedVehicleJourneyRef": "13590020"
+            },
+            "PublishedLineName": "Mission - Decoto - Fremont Blvd.",
+            "OperatorRef": "AC",
+            "OriginRef": "52229",
+            "OriginName": "Fremont BART Station",
+            "DestinationRef": "802130",
+            "DestinationName": "Hayward BART",
+            "Monitored": true,
+            "InCongestion": null,
+            "VehicleLocation": {
+              "Longitude": "-122.026512",
+              "Latitude": "37.5680084"
+            },
+            "Bearing": "301.0000000000",
+            "Occupancy": null,
+            "VehicleRef": "1410",
+            "MonitoredCall": {
+              "StopPointRef": "50501",
+              "StopPointName": "Decoto Rd + Fremont Blvd",
+              "VehicleLocationAtStop": "",
+              "VehicleAtStop": "false",
+              "AimedArrivalTime": "2020-07-29T19:13:00Z",
+              "ExpectedArrivalTime": "2020-07-29T19:15:01Z",
+              "AimedDepartureTime": "2020-07-29T19:13:00Z",
+              "ExpectedDepartureTime": null,
+              "Distances": ""
+            }
+          }
+        }
+      ],
+      "MonitoredStopVisitCancellation": [
+        {
+          "RecordedAtTime": "2020-07-29T19:13:35Z",
+          "MonitoringRef": null,
+          "LineRef": "57",
+          "DirectionRef": "E",
+          "FramedVehicleJourneyRef": {
+            "DataFrameRef": "2020-07-29",
+            "DatedVehicleJourneyRef": "6635020"
+          }
+        }
+      ]
+    }
+  }
+}
