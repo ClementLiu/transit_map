@@ -21,8 +21,8 @@ function GoogleMapComponent() {
     center: { lat: 37.8714752, lng: -122.266502 },
   });
   const containerStyle = {
-    width: "100vw",
-    height: "100vh",
+    width: "100%",
+    height: "50vh",
   };
 
   // temp
@@ -150,7 +150,7 @@ function GoogleMapComponent() {
                 key={index}
                 position={busRealLocation.location}
                 icon={{
-                  url: require("./assets/score.svg"),
+                  url: require("./assets/bus.svg"),
                 }}
                 // draggable={true}
               ></Marker>

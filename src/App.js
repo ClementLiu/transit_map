@@ -3,13 +3,15 @@ import {
   GoogleMapComponent,
   getRealTimeBusLocationByLine,
 } from "./Componets/GoogleMap";
+import Dashboard from "./Componets/Dashboard";
 
 function App() {
   getRealTimeBusLocationByLine();
   return (
     <div>
       {/* working */}
-      <GoogleMapComponent></GoogleMapComponent>
+      {/* <GoogleMapComponent></GoogleMapComponent> */}
+      <Dashboard></Dashboard>
     </div>
   );
 }
