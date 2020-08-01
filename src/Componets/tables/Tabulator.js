@@ -51,7 +51,7 @@ function Tabulator() {
     { title: "OriginName", field: "OriginName" },
     { title: "DestinationName", field: "DestinationName" },
     { title: "VehicleLocation", field: "VehicleLocation" },
-    { title: "RecordedAtTime", field: "RecordedAtTime" },
+    { title: "LineRef", field: "LineRef" },
   ];
   const handleClick = (e, row) => {
     const { LineRef, VehicleRef } = row._row.data;
