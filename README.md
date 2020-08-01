@@ -1,27 +1,29 @@
-# Todo
+# Task checklist
 
-### Basic Function
+## Basic Function
 
-- get API [ * ]
+- [ * ] get 511 API
 
-  - get bus lists, real-time location, stops, routes, [ * ]
-  - bus locations [ * ]
-  - bus real time location [ * ]
-  - calculate speed [ * ]
-    - distance/time
+  - [ * ] get bus lists, real-time location, stops, routes,
+  - [ * ] bus locations
+  - [ * ] bus real time location
+  - [ ] calculate speed
+    - [ ]distance/time
 
 - google map js API
-  - route function [ * ]
-  - icon function [ * ]
+  - [ * ] route function
+  - [ * ] icon function
 
-### UI design
+### Connect 511 & map
 
-## Connect
-
-1. add context
+1. use context Hook
 2. click bus -> map show route, bus location.
-   1. button on dash dispatch map
-   2. add context to map.
+   1. Add bus table
+   2. button on dashboard dispatch mapState
+   3. click table on dashboard dispatch mapState
+   4. add real-time-bus location
+   5. add bus icon
 
 frist seperate map componenet
-map requried states need to be sent by paretnes
+
+## [ ] UI design
