@@ -22,21 +22,25 @@ function Dashboard() {
   return (
     <div>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Looking Bus</Navbar.Brand>
+        <Navbar.Brand href="#hashLink">Looking Bus</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
+            <Nav.Link href="#hashLinkone">Title one</Nav.Link>
+            <Nav.Link href="#hashLinktwo">Title two</Nav.Link>
+            <NavDropdown title="Something more" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#num/3.1415926">
+                Here I am
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#num/2.33333">
+                I'm Another action
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#eyes/3.3">
+                I am Something else
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item href="#start/1.01010101">
+                Separated but not lonely
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -69,6 +73,7 @@ function Dashboard() {
         <Row className="mt-3">
           <Col xs={12}>
             <Card style={{ width: "100%" }}>
+              <Card.Title>Bus from AC</Card.Title>
               <Tabulator></Tabulator>
             </Card>
           </Col>

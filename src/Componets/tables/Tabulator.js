@@ -1,17 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MapDispatchContext } from "contexts/Map.context";
 import "react-tabulator/lib/css/tabulator.css";
 import { ReactTabulator } from "react-tabulator";
-import {
-  getLocationByLine,
-  getBusLinesByAgency,
-  getBusLocationByAgency,
-} from "Componets/ImportData";
+import { getBusLocationByAgency } from "Componets/ImportData";
 
 function Tabulator() {
+  const [busesInfo, setbusesInfo] = useState([]);
   const pageDispatch = useContext(MapDispatchContext);
-  const busesInfo = getBusLocationByAgency().Siri.ServiceDelivery
-    .VehicleMonitoringDelivery.VehicleActivity;
+  useEffect(() => {
+    getBusLocationByAgency("AC").then((res) => {
+      console.log("have res in AC");
+      setbusesInfo(
+        res.data.Siri.ServiceDelivery.VehicleMonitoringDelivery.VehicleActivity
+      );
+    });
+  }, []);
 
   var data = [
     // { id: 1, name: "Oli Bob", age: "12", col: "red", dob: "", passed: "true" },
@@ -123,7 +126,6 @@ function Tabulator() {
   };
   return (
     <>
-      <button onClick={handleClickTest}>Test</button>
       <ReactTabulator
         data={data}
         columns={columns}

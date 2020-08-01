@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getLocationByLine } from "Componets/ImportData";
+import {
+  getLocationByLine,
+  getRealTimeBusLocationByLine,
+} from "Componets/ImportData";
 import { GoogleMapComponent } from "Componets/GoogleMap";
 function Map(props) {
   // const id =props.lineId;
@@ -37,15 +40,28 @@ function Map(props) {
     console.log("newWayPoints", newWayPoints);
     return newWayPoints;
   };
+
   useEffect(() => {
     console.log("effect working");
     if (props.lineId !== -1) {
+      getRealTimeBusLocationByLine(props.lineId).then((res) => {
+        console.log("getRealTimeBusLocationByLine working in then", res);
+        if (res.length !== 0) {
+          setmapData({
+            ...mapData,
+            busRealLocations: res.map((buslocation) => ({
+              location: buslocation.location,
+            })),
+          });
+        }
+      });
       getLocationByLine(props.lineId).then((res) => {
         console.log("effect working in then", res);
         if (res.length !== 0) {
           console.log("effect working in l200");
           console.log(" in map res", res);
           setmapData({
+            ...mapData,
             locations: res,
             origin: {
               lat: parseFloat(res[0].location.Latitude),
@@ -55,7 +71,10 @@ function Map(props) {
               lat: parseFloat(res[res.length - 1].location.Latitude),
               lng: parseFloat(res[res.length - 1].location.Longitude),
             },
-            center: { lat: 37.754225, lng: -122.447193 },
+            center: {
+              lat: parseFloat(res[0].location.Latitude),
+              lng: parseFloat(res[0].location.Longitude),
+            },
             waypoints: returnWaypoint(res),
             busRealLocations: [],
           });

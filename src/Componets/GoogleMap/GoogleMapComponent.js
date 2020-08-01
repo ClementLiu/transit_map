@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-// import { getLocationByLine, getRealTimeBusLocationByLine } from "./importData";
 import {
   GoogleMap,
   LoadScript,
