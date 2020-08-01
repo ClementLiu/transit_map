@@ -11,7 +11,6 @@ function mapStateReducer(state, action) {
         ...state,
         lineId: action.lineId,
         initLoading: true,
-        loaded: false,
         isResponse: false,
         response: null,
       };
@@ -20,15 +19,8 @@ function mapStateReducer(state, action) {
         ...state,
         response: action.response,
         initLoading: false,
-        loaded: false,
         isResponse: true,
       };
-    case "ONLOAD":
-      return {
-        ...state,
-        loaded: true,
-      };
-
     default:
       return state;
   }
@@ -39,7 +31,7 @@ export function QueriesProvider(props) {
     state: "",
     lineId: -1,
     initLoading: false,
-    loaded: false,
+
     isResponse: false,
     response: null,
   });

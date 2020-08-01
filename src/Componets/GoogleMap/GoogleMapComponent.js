@@ -38,44 +38,6 @@ function GoogleMapComponent({
       }
     }
   };
-  // console.log("waypoints", waypoints);
-  // const locations = getLocationByLine(); //get bus locations
-  // console.log(locations);
-
-  // temp
-  // const origin = {
-  //   lat: 37.8714752,
-  //   lng: -122.266502,
-  // };
-  // const destination = {
-  //   lat: 37.072,
-  //   lng: -122.214,
-  // };
-  // const onLoad = (marker) => {
-  //   console.log("marker: ", marker);
-  // };
-
-  // console.log(`${process.env.REACT_APP_MAP_KEY}`);
-
-  // console.log("busRealLocations", busRealLocations);
-
-  // console.log("waypoints old", locations);
-  // locations.forEach(
-  //   (element, index) =>
-  //     index !== 0 &&
-  //     index !== locations.length - 1 &&
-  //     waypoints.push({
-  //       location: {
-  //         lat: parseFloat(element.location.Latitude),
-  //         lng: parseFloat(element.location.Longitude),
-  //       },
-  //       stopover: false,
-  //     })
-  // );
-
-  // icon
-  // console.log("working in map");
-  // console.log("getRealTimeBusLocationByLine", getRealTimeBusLocationByLine());
   console.log("mapContextState.response", mapContextState.response);
   return (
     <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAP_KEY}`}>
@@ -86,7 +48,6 @@ function GoogleMapComponent({
         onLoad={(map) => {
           console.log("DirectionsRenderer onLoad map: ", map);
         }}
-        // optional
         onUnmount={(map) => {
           console.log("DirectionsRenderer onUnmount map: ", map);
         }}
@@ -106,7 +67,6 @@ function GoogleMapComponent({
                   avoidFerries: true,
                   avoidHighways: false,
                   avoidTolls: false,
-                  // region: String
                 }}
                 callback={directionsCallback}
                 onLoad={(directionsService) => {
@@ -115,7 +75,6 @@ function GoogleMapComponent({
                     directionsService
                   );
                 }}
-                // optional
                 onUnmount={(directionsService) => {
                   console.log(
                     "DirectionsService onUnmount directionsService: ",
@@ -137,9 +96,7 @@ function GoogleMapComponent({
                     "DirectionsRenderer onLoad directionsRenderer: ",
                     directionsRenderer
                   );
-                  // mapContextDispatch({ type: "ONLOAD" });
                 }}
-                // optional
                 onUnmount={(directionsRenderer) => {
                   console.log(
                     "DirectionsRenderer onUnmount directionsRenderer: ",
@@ -157,7 +114,6 @@ function GoogleMapComponent({
                 icon={{
                   url: require("./assets/bus.svg"),
                 }}
-                // draggable={true}
               ></Marker>
             );
           })}

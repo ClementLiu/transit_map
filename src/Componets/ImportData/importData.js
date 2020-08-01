@@ -1,8 +1,6 @@
-// import line_pattern from "data/line_pattern";
 import bus_stops from "data/bus_stops";
 import real_time from "data/real-time";
 import bus_lines from "data/bus_lines";
-// import bus_location from "data/bus_location";
 import axios from "axios";
 
 async function getLocationByLine(lineID) {
