@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // import { getLocationByLine, getRealTimeBusLocationByLine } from "./importData";
 import {
   GoogleMap,
@@ -7,6 +7,7 @@ import {
   DirectionsService,
   DirectionsRenderer,
 } from "@react-google-maps/api";
+import { MapContext, MapDispatchContext } from "contexts/Map.context";
 
 function GoogleMapComponent({
   origin,
@@ -15,14 +16,13 @@ function GoogleMapComponent({
   center,
   busRealLocations,
 }) {
+  const mapContextState = useContext(MapContext);
+  const mapContextDispatch = useContext(MapDispatchContext);
   console.log("center In component", center);
 
   console.log("origin", origin);
   // map setting
-  const [mapState, setmapState] = useState({
-    response: null,
-    placehold: "",
-  });
+
   const containerStyle = {
     width: "100%",
     height: "50vh",
@@ -33,7 +33,7 @@ function GoogleMapComponent({
     console.log(response);
     if (response !== null) {
       if (response.status === "OK") {
-        setmapState({ ...mapState, response: response });
+        mapContextDispatch({ type: "CALLBACK", response: response });
       } else {
         console.log("response: ", response);
       }
@@ -77,7 +77,7 @@ function GoogleMapComponent({
   // icon
   // console.log("working in map");
   // console.log("getRealTimeBusLocationByLine", getRealTimeBusLocationByLine());
-  console.log("mapState.response", mapState.response);
+  console.log("mapContextState.response", mapContextState.response);
   return (
     <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAP_KEY}`}>
       <GoogleMap
@@ -93,55 +93,62 @@ function GoogleMapComponent({
         }}
       >
         <>
-          {destination !== "" && origin !== "" && mapState.response === null && (
-            <DirectionsService
-              options={{
-                origin: origin,
-                destination: destination,
-                waypoints: waypoints,
-                travelMode: "DRIVING",
-                optimizeWaypoints: false,
-                provideRouteAlternatives: false,
-                avoidFerries: true,
-                avoidHighways: false,
-                avoidTolls: false,
-                // region: String
-              }}
-              callback={directionsCallback}
-              onLoad={(directionsService) => {
-                console.log(
-                  "DirectionsService onLoad directionsService: ",
-                  directionsService
-                );
-              }}
-              // optional
-              onUnmount={(directionsService) => {
-                console.log(
-                  "DirectionsService onUnmount directionsService: ",
-                  directionsService
-                );
-              }}
-            ></DirectionsService>
-          )}
-          {mapState.response !== null && (
-            <DirectionsRenderer
-              options={{ directions: mapState.response }}
-              onLoad={(directionsRenderer) => {
-                console.log("mapState.response", mapState.response);
-                console.log(
-                  "DirectionsRenderer onLoad directionsRenderer: ",
-                  directionsRenderer
-                );
-              }}
-              // optional
-              onUnmount={(directionsRenderer) => {
-                console.log(
-                  "DirectionsRenderer onUnmount directionsRenderer: ",
-                  directionsRenderer
-                );
-              }}
-            ></DirectionsRenderer>
-          )}
+          {destination !== "" &&
+            origin !== "" &&
+            mapContextState.initLoading === true && (
+              <DirectionsService
+                options={{
+                  origin: origin,
+                  destination: destination,
+                  waypoints: waypoints,
+                  travelMode: "DRIVING",
+                  optimizeWaypoints: false,
+                  provideRouteAlternatives: false,
+                  avoidFerries: true,
+                  avoidHighways: false,
+                  avoidTolls: false,
+                  // region: String
+                }}
+                callback={directionsCallback}
+                onLoad={(directionsService) => {
+                  console.log(
+                    "DirectionsService onLoad directionsService: ",
+                    directionsService
+                  );
+                }}
+                // optional
+                onUnmount={(directionsService) => {
+                  console.log(
+                    "DirectionsService onUnmount directionsService: ",
+                    directionsService
+                  );
+                }}
+              ></DirectionsService>
+            )}
+          {mapContextState.response !== null &&
+            mapContextState.isResponse === true && (
+              <DirectionsRenderer
+                options={{ directions: mapContextState.response }}
+                onLoad={(directionsRenderer) => {
+                  console.log(
+                    "mapContextState.response in render",
+                    mapContextState.response
+                  );
+                  console.log(
+                    "DirectionsRenderer onLoad directionsRenderer: ",
+                    directionsRenderer
+                  );
+                  // mapContextDispatch({ type: "ONLOAD" });
+                }}
+                // optional
+                onUnmount={(directionsRenderer) => {
+                  console.log(
+                    "DirectionsRenderer onUnmount directionsRenderer: ",
+                    directionsRenderer
+                  );
+                }}
+              ></DirectionsRenderer>
+            )}
           {busRealLocations.map((busRealLocation, index) => {
             console.log("busRealLocation", busRealLocation);
             return (

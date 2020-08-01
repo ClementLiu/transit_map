@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { MapDispatchContext } from "contexts/map.context";
+import { MapDispatchContext } from "contexts/Map.context";
 import "react-tabulator/lib/css/tabulator.css";
 import { ReactTabulator } from "react-tabulator";
 import {
@@ -115,7 +115,7 @@ function Tabulator() {
     console.log("LineRef,VehicleRef ", LineRef, VehicleRef);
     pageDispatch({
       type: "SELECTBUS",
-      LineRef: LineRef,
+      lineId: LineRef,
     });
   };
   const handleClickTest = () => {

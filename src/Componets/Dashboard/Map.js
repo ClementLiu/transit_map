@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { getLocationByLine } from "Componets/ImportData";
 import { GoogleMapComponent } from "Componets/GoogleMap";
 function Map(props) {
-  // const id =props.vehicleRef;
-  console.log("props.vehicleRef in Map", props.vehicleRef);
+  // const id =props.lineId;
+  console.log("props.lineId in Map", props.lineId);
   const [mapData, setmapData] = useState({
     origin: "",
     destination: "",
@@ -12,11 +12,35 @@ function Map(props) {
     waypoints: [],
     busRealLocations: [],
   });
+  const returnWaypoint = (res) => {
+    console.log("in res ***", res);
+    let newWayPoints = [];
+    const waypointsNew = res.map((location) => ({
+      location: {
+        lat: parseFloat(location.location.Latitude),
+        lng: parseFloat(location.location.Longitude),
+      },
+      stopover: false,
+    }));
+    if (waypointsNew.length > 25) {
+      newWayPoints = [...waypointsNew];
+      console.log("in res newWayPoints", newWayPoints);
+      while (newWayPoints.length > 25) {
+        let remove = Math.floor(
+          Math.random() * Math.floor(newWayPoints.length)
+        );
+        if (remove !== 0 && remove !== newWayPoints.length - 1) {
+          newWayPoints.splice(remove, 1);
+        }
+      }
+    }
+    console.log("newWayPoints", newWayPoints);
+    return newWayPoints;
+  };
   useEffect(() => {
     console.log("effect working");
-    if (props.vehicleRef === 19) {
-      console.log("effect working === 19");
-      getLocationByLine(props.vehicleRef).then((res) => {
+    if (props.lineId !== -1) {
+      getLocationByLine(props.lineId).then((res) => {
         console.log("effect working in then", res);
         if (res.length !== 0) {
           console.log("effect working in l200");
@@ -32,21 +56,15 @@ function Map(props) {
               lng: parseFloat(res[res.length - 1].location.Longitude),
             },
             center: { lat: 37.754225, lng: -122.447193 },
-            waypoints: res.map((location) => ({
-              location: {
-                lat: parseFloat(location.location.Latitude),
-                lng: parseFloat(location.location.Longitude),
-              },
-              stopover: false,
-            })),
+            waypoints: returnWaypoint(res),
             busRealLocations: [],
           });
         }
       });
     }
-  }, [props.vehicleRef]);
-  // const locations = props.vehicleRef === 19 ? result : undefined; //get bus locations
-  // let locations = props.vehicleRef === 19 ? getLocationByLine(19) : load; //get bus locations
+  }, [props.lineId]);
+  // const locations = props.lineId === 19 ? result : undefined; //get bus locations
+  // let locations = props.lineId === 19 ? getLocationByLine(19) : load; //get bus locations
   // // getLocationByLine(19).then((result) => (locations = result));
   // const waypoints =
   //   locations !== undefined
