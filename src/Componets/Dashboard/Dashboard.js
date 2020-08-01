@@ -15,7 +15,11 @@ import Map from "./Map";
 
 function Dashboard() {
   const [bustState, setbusState] = useState(-1);
-
+  const handleClick = () => {
+    console.log("clicked In dash");
+    setbusState(19);
+    console.log("bustState", bustState);
+  };
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -52,14 +56,7 @@ function Dashboard() {
         <Row className="mt-3">
           <Col xs={12}>
             <Card style={{ width: "100%" }}>
-              <Button
-                onClick={() => {
-                  console.log("clicked In dash");
-                  setbusState(19);
-                }}
-              >
-                Test
-              </Button>
+              <Button onClick={handleClick}>Test</Button>
             </Card>
           </Col>
         </Row>
