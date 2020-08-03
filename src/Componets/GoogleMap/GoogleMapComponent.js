@@ -5,6 +5,7 @@ import {
   Marker,
   DirectionsService,
   DirectionsRenderer,
+  DistanceMatrixService,
 } from "@react-google-maps/api";
 import { MapContext, MapDispatchContext } from "contexts/Map.context";
 
@@ -14,12 +15,16 @@ function GoogleMapComponent({
   waypoints,
   center,
   busRealLocations,
+  timediffer,
+  origiLocations,
+  destinationLocation,
+  isSpeedCallback,
 }) {
   const mapContextState = useContext(MapContext);
   const mapContextDispatch = useContext(MapDispatchContext);
   console.log("center In component", center);
 
-  console.log("origin", origin);
+  console.log("origiLocations in google map", origiLocations);
   // map setting
 
   const containerStyle = {
@@ -38,7 +43,16 @@ function GoogleMapComponent({
       }
     }
   };
+  const distanceCallback = (response) => {
+    console.log("distance callback response");
+
+    if (response !== null) {
+      console.log("distance callback not null");
+      mapContextDispatch({ type: "SPEEDCALLBACK", speedCallRes: response });
+    }
+  };
   console.log("mapContextState.response", mapContextState.response);
+
   return (
     <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAP_KEY}`}>
       <GoogleMap
@@ -53,6 +67,32 @@ function GoogleMapComponent({
         }}
       >
         <>
+          {!isSpeedCallback && origiLocations !== undefined ? (
+            <DistanceMatrixService
+              options={{
+                origins: origiLocations.map((origiLocation) => ({
+                  lat: parseFloat(origiLocation.location.Latitude, 10),
+                  lng: parseFloat(origiLocation.location.Longitude, 10),
+                })),
+                destinations: destinationLocation.map((destination) => ({
+                  lat: parseFloat(destination.location.Latitude, 10),
+                  lng: parseFloat(destination.location.Longitude, 10),
+                })),
+                travelMode: "DRIVING",
+                drivingOptions: {
+                  departureTime: new Date(),
+                  trafficModel: "bestguess",
+                },
+                avoidHighways: false,
+                avoidTolls: false,
+              }}
+              callback={distanceCallback}
+              // already get the OnwardCalls cross reference location and send to google map.
+            ></DistanceMatrixService>
+          ) : (
+            console.log("distance finished")
+          )}
+
           {destination !== "" &&
             origin !== "" &&
             mapContextState.initLoading === true && (
@@ -106,11 +146,11 @@ function GoogleMapComponent({
               ></DirectionsRenderer>
             )}
           {busRealLocations.map((busRealLocation, index) => {
-            console.log("busRealLocation", busRealLocation);
+            console.log("busRealLocation in marker", busRealLocation);
             return (
               <Marker
                 key={index}
-                position={busRealLocation.location}
+                position={busRealLocation}
                 icon={{
                   url: require("./assets/bus.svg"),
                 }}

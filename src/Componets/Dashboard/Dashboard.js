@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Nav,
   Card,
@@ -11,14 +11,33 @@ import {
 } from "react-bootstrap";
 import { MapContext, MapDispatchContext } from "contexts/Map.context";
 
-import { Tabulator } from "Componets/tables";
+import { BusInfo, StopInfo } from "Componets/tables";
 import Map from "./Map";
+import { importBusSpeed } from "Componets/ImportData";
 
 function Dashboard() {
   const mapState = useContext(MapContext);
   const mapDispatch = useContext(MapDispatchContext);
   console.log("mapState", mapState);
-
+  const [state, setState] = useState({
+    timediffer: [],
+    origiLocations: [],
+    destinationLocation: [],
+  });
+  const returnTabl = () => {
+    const { timediffer, origiLocations, destinationLocation } = importBusSpeed(
+      mapState.lineId
+    );
+    setState({ timediffer, origiLocations, destinationLocation });
+    return (
+      <StopInfo
+        timediffer={state.timediffer}
+        origiLocations={state.origiLocations}
+        destinationLocation={state.destinationLocation}
+        busSpeedCallRes={mapState.speedCallRes}
+      ></StopInfo>
+    );
+  };
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -51,7 +70,14 @@ function Dashboard() {
         <Row>
           <Col xs={12}>
             <Card style={{ width: "100%" }}>
-              <Map lineId={mapState.lineId}></Map>
+              <Map
+                lineId={mapState.lineId}
+                linevehicleRefId={mapState.linevehicleRefId}
+                timediffer={state.timediffer}
+                origiLocations={state.origiLocations}
+                destinationLocation={state.destinationLocation}
+                isSpeedCallback={mapState.isSpeedCallback}
+              ></Map>
             </Card>
           </Col>
         </Row>
@@ -71,10 +97,16 @@ function Dashboard() {
           </Col>
         </Row>
         <Row className="mt-3">
-          <Col xs={12}>
+          <Col xs={6}>
             <Card style={{ width: "100%" }}>
               <Card.Title>Bus from AC</Card.Title>
-              <Tabulator></Tabulator>
+              <BusInfo></BusInfo>
+            </Card>
+          </Col>
+          <Col xs={6}>
+            <Card style={{ width: "100%" }}>
+              <Card.Title>Speed between stops</Card.Title>
+              {mapState.readySpeed && returnTabl()}
             </Card>
           </Col>
         </Row>

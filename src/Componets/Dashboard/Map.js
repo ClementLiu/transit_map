@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   getLocationByLine,
-  getRealTimeBusLocationByLine,
+  getRealTimeBusLocationsByLine,
+  getRealTimeBusLocationsByVehicleRefId,
 } from "Componets/ImportData";
+import { MapDispatchContext } from "contexts/Map.context";
 import { GoogleMapComponent } from "Componets/GoogleMap";
 function Map(props) {
+  const mapDispatch = useContext(MapDispatchContext);
   console.log("props.lineId in Map", props.lineId);
   const [mapData, setmapData] = useState({
     origin: "",
@@ -42,18 +45,33 @@ function Map(props) {
 
   useEffect(() => {
     console.log("effect working");
-    if (props.lineId !== -1) {
-      getRealTimeBusLocationByLine(props.lineId).then((res) => {
-        console.log("getRealTimeBusLocationByLine working in then", res);
-        if (res.length !== 0) {
-          setmapData({
-            ...mapData,
-            busRealLocations: res.map((buslocation) => ({
-              location: buslocation.location,
-            })),
-          });
+    if (props.lineId !== -1 && props.linevehicleRefId !== -1) {
+      console.log("props.linevehicleRefId", props.linevehicleRefId);
+      getRealTimeBusLocationsByVehicleRefId(props.linevehicleRefId).then(
+        (res) => {
+          console.log("getRealTimeBusLocationsByLine working in then", res);
+          // [busLocations, busOnWardCalls]
+          if (res.busLocations.length !== 0) {
+            const busRealLocations = res.busLocations.map(
+              (buslocation) => buslocation.location
+            );
+            if (res.busOnWardCalls.length !== 0) {
+              console.log(
+                "before mapDispatch  res.busOnWardCalls",
+                res.busOnWardCalls
+              );
+              mapDispatch({
+                type: "BUSTONWARD",
+                selectedBusStops: res.busOnWardCalls,
+              });
+            }
+            setmapData({
+              ...mapData,
+              busRealLocations: busRealLocations,
+            });
+          }
         }
-      });
+      );
       getLocationByLine(props.lineId).then((res) => {
         console.log("effect working in then", res);
         if (res.length !== 0) {
@@ -75,7 +93,7 @@ function Map(props) {
               lng: parseFloat(res[0].location.Longitude),
             },
             waypoints: returnWaypoint(res),
-            busRealLocations: [],
+            // busRealLocations: [],
           });
         }
       });
@@ -90,6 +108,10 @@ function Map(props) {
         waypoints={mapData.waypoints}
         center={mapData.center}
         busRealLocations={mapData.busRealLocations}
+        timediffer={props.timediffer}
+        origiLocations={props.origiLocations}
+        destinationLocation={props.destinationLocation}
+        isSpeedCallback={props.isSpeedCallback}
       ></GoogleMapComponent>
     </div>
   );

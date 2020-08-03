@@ -1,10 +1,12 @@
 import React from "react";
 import {
-  getRealTimeBusLocationByLine,
+  getRealTimeBusLocationsByLine,
+  getRealTimeBusLocationsByVehicleRefId,
   getLocationByLine,
   getBusLinesByAgency,
   getBusLocationByAgency,
 } from "./importData";
+import { importBusSpeed } from "./importBusSpeed";
 
 function index() {
   return <div></div>;
@@ -15,5 +17,7 @@ export {
   getLocationByLine,
   getBusLinesByAgency,
   getBusLocationByAgency,
-  getRealTimeBusLocationByLine,
+  getRealTimeBusLocationsByLine,
+  getRealTimeBusLocationsByVehicleRefId,
+  importBusSpeed,
 };

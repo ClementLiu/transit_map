@@ -4,7 +4,7 @@ import "react-tabulator/lib/css/tabulator.css";
 import { ReactTabulator } from "react-tabulator";
 import { getBusLocationByAgency } from "Componets/ImportData";
 
-function Tabulator() {
+function SpeedBetween() {
   const [busesInfo, setbusesInfo] = useState([]);
   const pageDispatch = useContext(MapDispatchContext);
   useEffect(() => {
@@ -78,4 +78,4 @@ function Tabulator() {
   );
 }
 
-export default Tabulator;
+export default SpeedBetween;

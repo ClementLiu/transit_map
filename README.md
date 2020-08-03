@@ -8,7 +8,6 @@
   - [ * ] bus locations
   - [ * ] bus real time location
   - [ ] calculate speed
-    - [ ]distance/time
 
 - google map js API
   - [ * ] route function
@@ -23,7 +22,10 @@
    3. click table on dashboard dispatch mapState
    4. add real-time-bus location
    5. add bus icon
+3. calculate speed between stops.
+   1. distance
+   2. timeline
 
-frist seperate map componenet
+### [ ] UI design
 
-## [ ] UI design
+### [ ] add localstorage

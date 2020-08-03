@@ -27,19 +27,20 @@ async function getLocationByLine(lineID) {
   console.log("locationsArray", locationsArray);
   return locationsArray;
 }
-async function getRealTimeBusLocationByLine(getlinRef) {
+async function getRealTimeBusLocationsByLine(getlinRef) {
   let busRealtime = await axios.get(
     `http://api.511.org/transit/VehicleMonitoring?api_key=${process.env.REACT_APP_511_API}&agency=AC`
   );
 
   const linRef = getlinRef || 19;
   const busLocations = [];
+  const busOnWardCalls = [];
   console.log("real_time1", real_time.Siri);
   const busJourneies =
     busRealtime.data.Siri.ServiceDelivery.VehicleMonitoringDelivery
       .VehicleActivity;
   busJourneies.forEach((element, index) => {
-    element.MonitoredVehicleJourney.LineRef == linRef &&
+    if (element.MonitoredVehicleJourney.LineRef == linRef) {
       busLocations.push({
         index: index,
         location: {
@@ -51,9 +52,62 @@ async function getRealTimeBusLocationByLine(getlinRef) {
           ),
         },
       });
+      busOnWardCalls.push({
+        VehicleRef: element.MonitoredVehicleJourney.VehicleRef,
+        OnwardCall: element.MonitoredVehicleJourney.OnwardCalls.OnwardCall,
+      });
+    }
   });
   console.log("busLocations", busLocations);
   return busLocations;
+}
+async function getRealTimeBusLocationsByVehicleRefId(vehicleRefId) {
+  let busRealtime = await axios.get(
+    `http://api.511.org/transit/VehicleMonitoring?api_key=${process.env.REACT_APP_511_API}&agency=AC`
+  );
+
+  console.log(
+    "vehicleRefId in getRealTimeBusLocationsByvehicleRefId",
+    vehicleRefId
+  );
+  const vehicleRef = vehicleRefId || 19;
+  console.log(
+    "vehicleRef in getRealTimeBusLocationsByVehicleRefId",
+    vehicleRef
+  );
+  const busLocations = [];
+  const busOnWardCalls = [];
+  console.log("real_time1", real_time.Siri);
+  const busJourneies =
+    busRealtime.data.Siri.ServiceDelivery.VehicleMonitoringDelivery
+      .VehicleActivity;
+  busJourneies.forEach((element, index) => {
+    if (element.MonitoredVehicleJourney.VehicleRef == vehicleRef) {
+      console.log(
+        "busLocations pushing ",
+        element.MonitoredVehicleJourney.VehicleLocation.Latitude
+      );
+      busLocations.push({
+        index: index,
+        location: {
+          lat: parseFloat(
+            element.MonitoredVehicleJourney.VehicleLocation.Latitude
+          ),
+          lng: parseFloat(
+            element.MonitoredVehicleJourney.VehicleLocation.Longitude
+          ),
+        },
+      });
+      element.MonitoredVehicleJourney.OnwardCalls !== undefined &&
+        busOnWardCalls.push(
+          element.MonitoredVehicleJourney.OnwardCalls.OnwardCall
+        );
+    }
+    console.log("busOnWardCalls", busOnWardCalls);
+  });
+  console.log("busLocations", busLocations);
+  console.log("busOnWardCalls", busOnWardCalls);
+  return { busLocations, busOnWardCalls };
 }
 function getBusLinesByAgency(agencyName) {
   return bus_lines;
@@ -67,7 +121,8 @@ async function getBusLocationByAgency(agencyName) {
 
 export {
   getLocationByLine,
-  getRealTimeBusLocationByLine,
+  getRealTimeBusLocationsByLine,
+  getRealTimeBusLocationsByVehicleRefId,
   getBusLinesByAgency,
   getBusLocationByAgency,
 };
