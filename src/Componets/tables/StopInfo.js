@@ -38,7 +38,7 @@ function StopInfo({
     console.log("timediffer", timediffer);
     return {
       distance:
-        busSpeedCallRes.rows !== undefined
+        Object.keys(busSpeedCallRes).length !== 0
           ? busSpeedCallRes.rows[index].elements[index].distance.text
           : [],
       originLocationName: originLocationName[index],
