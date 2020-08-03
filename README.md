@@ -1,5 +1,9 @@
 # Task checklist
 
+add .env to base folder with:
+REACT_APP_MAP_KEY=YOUR_GOOGLE_KEY
+REACT_APP_511_API=YOUR_511_KEY
+
 ## Basic Function
 
 - [ * ] get 511 API
