@@ -27,11 +27,17 @@ function mapStateReducer(state, action) {
         initLoading: false,
         isResponse: true,
       };
+    case "GETBUSTSTOP":
+      return {
+        ...state,
+        isBusStopGet: true,
+      };
     case "SPEEDCALLBACK": {
       console.log("in SPEEDCALLBACK", action.speedCallRes);
       return {
         ...state,
         isSpeedCallback: true,
+        isBusStopGet: false,
         readySpeed: false,
         speedCallRes: action.speedCallRes,
       };
@@ -66,12 +72,13 @@ export function QueriesProvider(props) {
     lineId: -1,
     initLoading: false,
     isResponse: false,
-    isSpeedCallback: false,
+    isSpeedCallback: true,
     readySpeed: false,
     response: null,
     linevehicleRefId: -1,
     selectedBusStops: [],
     speedCallRes: {},
+    isBusStopGet: false,
   });
   const [speedState, speedStateDispatch] = useReducer(speedStateReducer, {});
 

@@ -19,6 +19,7 @@ function GoogleMapComponent({
   origiLocations,
   destinationLocation,
   isSpeedCallback,
+  isBusStopGet,
 }) {
   const mapContextState = useContext(MapContext);
   const mapContextDispatch = useContext(MapDispatchContext);
@@ -44,14 +45,24 @@ function GoogleMapComponent({
     }
   };
   const distanceCallback = (response) => {
-    console.log("distance callback response");
+    console.log("distance callback response", response);
 
     if (response !== null) {
-      console.log("distance callback not null");
+      console.log("distance callback not null", response);
       mapContextDispatch({ type: "SPEEDCALLBACK", speedCallRes: response });
     }
   };
   console.log("mapContextState.response", mapContextState.response);
+  console.log(
+    `origiLocations.map((origiLocation) => ({
+    lat: parseFloat(origiLocation.location.Latitude),
+    lng: parseFloat(origiLocation.location.Longitude),
+  }))`,
+    origiLocations.map((origiLocation) => ({
+      lat: parseFloat(origiLocation.location.Latitude),
+      lng: parseFloat(origiLocation.location.Longitude),
+    }))
+  );
 
   return (
     <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAP_KEY}`}>
@@ -67,16 +78,16 @@ function GoogleMapComponent({
         }}
       >
         <>
-          {!isSpeedCallback && origiLocations !== undefined ? (
+          {!isSpeedCallback && origiLocations.length !== 0 && isBusStopGet ? (
             <DistanceMatrixService
               options={{
                 origins: origiLocations.map((origiLocation) => ({
-                  lat: parseFloat(origiLocation.location.Latitude, 10),
-                  lng: parseFloat(origiLocation.location.Longitude, 10),
+                  lat: parseFloat(origiLocation.location.Latitude),
+                  lng: parseFloat(origiLocation.location.Longitude),
                 })),
                 destinations: destinationLocation.map((destination) => ({
-                  lat: parseFloat(destination.location.Latitude, 10),
-                  lng: parseFloat(destination.location.Longitude, 10),
+                  lat: parseFloat(destination.location.Latitude),
+                  lng: parseFloat(destination.location.Longitude),
                 })),
                 travelMode: "DRIVING",
                 drivingOptions: {

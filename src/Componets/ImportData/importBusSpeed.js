@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import route_timetable from "data/route_timetable";
 import bus_stops from "data/bus_stops";
@@ -9,6 +9,7 @@ import {
   DistanceMatrixService,
 } from "@react-google-maps/api";
 import axios from "axios";
+import { MapDispatchContext } from "contexts/Map.context";
 
 function timeStringToFloat(time) {
   var hoursMinutesSecond = time.split(/[.:]/);
@@ -18,9 +19,12 @@ function timeStringToFloat(time) {
   return hours * 3600 + minutes * 60 + seconds;
 }
 // get line schedule
-function getScheduleByLine(line_id) {
-  const timeTable = route_timetable.Content.TimetableFrame
-    ? route_timetable.Content.TimetableFrame[0]
+async function getScheduleByLine(line_id) {
+  let busSeheduleByline = await axios.get(
+    `http://api.511.org/transit/timetable?api_key=${process.env.REACT_APP_511_API}&operator_id=AC&line_id=${line_id}`
+  );
+  const timeTable = busSeheduleByline.data.Content.TimetableFrame
+    ? busSeheduleByline.data.Content.TimetableFrame[0]
     : console.log("error getScheduleByLine");
   const stopPointsRef = timeTable.vehicleJourneys.ServiceJourney[0].calls.Call.map(
     (element, index) => element.ScheduledStopPointRef.ref
@@ -92,16 +96,38 @@ function distanceMatrix(locations, timediffer) {
   //   return ["speed"];
 }
 
-function importBusSpeed(line_id) {
-  getLocationsLocationNameByStopRef(
-    getScheduleByLine(line_id).stopPointsRef
-  ).then((res) => {
-    const exportObject = distanceMatrix(
-      res,
-      getScheduleByLine(line_id).timedifferSeconds
-    );
-    return exportObject;
-  });
+async function importBusSpeed(line_id) {
+  //   const stopPoint = ;
+  var exporteObject = {
+    timediffer: [],
+    origiLocations: [],
+    destinationLocation: [],
+  };
+  var tempHold = [];
+  const returnValue = getScheduleByLine(line_id)
+    .then((res) => {
+      tempHold = res.timedifferSeconds;
+      return res.stopPointsRef;
+    })
+    .then(getLocationsLocationNameByStopRef)
+    .then((res) => {
+      exporteObject = distanceMatrix(res, tempHold);
+      console.log("in res of getLocationsLocationNameByStopRef");
+      return exporteObject;
+    });
+  // const returnValue = getLocationsLocationNameByStopRef(
+  //   getScheduleByLine(line_id).stopPointsRef
+  // ).then((res) => {
+  //   exporteObject = distanceMatrix(
+  //     res
+  //     getScheduleByLine(line_id).timedifferSeconds
+  //   );
+  //   console.log("in res of getLocationsLocationNameByStopRef");
+
+  //   return exporteObject;
+  // });
+  console.log("Not return anything", returnValue);
+  return returnValue;
   //   distanceMatrix();
   //   return <div></div>;
 }

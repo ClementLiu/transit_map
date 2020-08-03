@@ -103,7 +103,7 @@ async function getRealTimeBusLocationsByVehicleRefId(vehicleRefId) {
           element.MonitoredVehicleJourney.OnwardCalls.OnwardCall
         );
     }
-    console.log("busOnWardCalls", busOnWardCalls);
+    // console.log("busOnWardCalls", busOnWardCalls);
   });
   console.log("busLocations", busLocations);
   console.log("busOnWardCalls", busOnWardCalls);

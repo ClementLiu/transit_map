@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Nav,
   Card,
@@ -23,21 +23,32 @@ function Dashboard() {
     timediffer: [],
     origiLocations: [],
     destinationLocation: [],
+    isTableReady: false,
   });
-  const returnTabl = () => {
-    const { timediffer, origiLocations, destinationLocation } = importBusSpeed(
-      mapState.lineId
-    );
-    setState({ timediffer, origiLocations, destinationLocation });
-    return (
-      <StopInfo
-        timediffer={state.timediffer}
-        origiLocations={state.origiLocations}
-        destinationLocation={state.destinationLocation}
-        busSpeedCallRes={mapState.speedCallRes}
-      ></StopInfo>
-    );
-  };
+  useEffect(() => {
+    if (mapState.lineId !== -1) {
+      console.log("being res in mapState.lineId", mapState.lineId);
+      importBusSpeed(mapState.lineId).then((res) => {
+        if (res !== undefined) {
+          console.log("being res in dashboard", res);
+          const { timediffer, origiLocations, destinationLocation } = res;
+          console.log(
+            "being res in dashboard Value",
+            timediffer,
+            origiLocations,
+            destinationLocation
+          );
+          mapDispatch({ type: "GETBUSTSTOP" });
+          setState({
+            timediffer: timediffer,
+            origiLocations: origiLocations,
+            destinationLocation: destinationLocation,
+            isTableReady: true,
+          });
+        }
+      });
+    }
+  }, [mapState.lineId]);
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -77,6 +88,7 @@ function Dashboard() {
                 origiLocations={state.origiLocations}
                 destinationLocation={state.destinationLocation}
                 isSpeedCallback={mapState.isSpeedCallback}
+                isBusStopGet={mapState.isBusStopGet}
               ></Map>
             </Card>
           </Col>
@@ -106,7 +118,19 @@ function Dashboard() {
           <Col xs={6}>
             <Card style={{ width: "100%" }}>
               <Card.Title>Speed between stops</Card.Title>
-              {mapState.readySpeed && returnTabl()}
+              {state.isTableReady ? (
+                <StopInfo
+                  timediffer={state.timediffer}
+                  origiLocations={state.origiLocations}
+                  destinationLocation={state.destinationLocation}
+                  busSpeedCallRes={mapState.speedCallRes}
+                ></StopInfo>
+              ) : (
+                <div>Not ready</div>
+              )}
+
+              {/* {mapState.readySpeed && (returnTabl())} */}
+              {/* {returnTable()} */}
             </Card>
           </Col>
         </Row>

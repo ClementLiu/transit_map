@@ -33,6 +33,9 @@ function StopInfo({
     });
   }
   const data = timediffer.map((timediffer, index) => {
+    console.log("busSpeedCallRes in stopInfo", busSpeedCallRes, index);
+    console.log("originLocationName[index]", originLocationName[index]);
+    console.log("timediffer", timediffer);
     return {
       distance:
         busSpeedCallRes.rows !== undefined

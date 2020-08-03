@@ -100,6 +100,7 @@ function Map(props) {
     }
   }, [props.lineId]);
 
+  console.log("props.destinationLocation in Map", props.destinationLocation);
   return (
     <div>
       <GoogleMapComponent
@@ -112,6 +113,7 @@ function Map(props) {
         origiLocations={props.origiLocations}
         destinationLocation={props.destinationLocation}
         isSpeedCallback={props.isSpeedCallback}
+        isBusStopGet={props.isBusStopGet}
       ></GoogleMapComponent>
     </div>
   );
