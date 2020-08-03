@@ -95,20 +95,6 @@ function Dashboard() {
         </Row>
 
         <Row className="mt-3">
-          <Col xs={12}>
-            <Card style={{ width: "100%" }}>
-              <Button
-                onClick={() => {
-                  console.log("clicked In dash");
-                  mapDispatch({ type: "SELECTBUS", lineId: "19" });
-                }}
-              >
-                Test
-              </Button>
-            </Card>
-          </Col>
-        </Row>
-        <Row className="mt-3">
           <Col xs={6}>
             <Card style={{ width: "100%" }}>
               <Card.Title>Bus from AC</Card.Title>
